@@ -6,6 +6,7 @@ const pusher = new Pusher({
   key: process.env.KEY,
   secret: process.env.SECRET,
   cluster: process.env.CLUSTER,
+  useTLS: false
 });
 
 export default async function handler(req, res) {
