@@ -27,7 +27,7 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  const requestText = await req.text();
+  const requestText = await req.body.text();
   const form = new URLSearchParams(requestText);
 
   const socketId = form.get('socketId')
