@@ -10,18 +10,6 @@ const pusher = new Pusher({
   cluster: process.env.CLUSTER,
 });
 
-async function sendEvent({ channel, type, data }) {
-  const event = {
-    channel: channel,
-    type: type,
-    data: data,
-  };
-
-  pusher.trigger(channel, type, event.data, () => {
-    return 'ok';
-  });
-}
-
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -34,7 +22,9 @@ export default async function handler(req, res) {
     }))
   }
 
-  const eventRes = await sendEvent(req.body);
+  const { channel, type, data } = req.body;
+
+  const eventRes = await pusher.trigger(channel, type, data);
   return res.status(200).json({ message: `Event sent successfuly`, eventRes });
 
   /*if (req.method === 'POST') {
