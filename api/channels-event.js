@@ -23,6 +23,17 @@ async function sendEvent({ channel, type, data }) {
 }
 
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+
+  if(req.method === 'OPTIONS') {
+    return res.status(200).json(({
+        body: "OK"
+    }))
+  }
+  
   const eventRes = await sendEvent(req.body);
   return res.status(200).json({ message: `Event sent successfuly`, eventRes });
 
