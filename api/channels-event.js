@@ -24,9 +24,9 @@
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     // const eventRes = await sendEvent(req.body);
-    if (eventRes) {
+    /*if (eventRes) {
       return res.status(200).json({ message: `Event sent successfuly` });
-    }
+    }*/
 
     return res.status(400).json({ message: 'Error sending event' });
   }
