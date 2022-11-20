@@ -27,9 +27,11 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  const body = req.json();
-  const socketId = body.socketId
-  const channel = body.channel
+  const requestText = await req.text();
+  const form = new URLSearchParams(requestText);
+
+  const socketId = form.get('socketId')
+  const channel = form.get('channel')
 
   const auth = pusher.authenticate(socketId, channel);
   res.send(auth);
