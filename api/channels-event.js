@@ -1,14 +1,15 @@
-import Pusher from 'pusher';
+const Pusher = require('pusher');
 
 
 const sendEvent = async ({ channel, type, data }) => {
+
   const pusher = new Pusher({
     appId: process.env.APP_ID,
     key: process.env.KEY,
     secret: process.env.SECRET,
     cluster: process.env.CLUSTER,
   });
-
+  
   const event = {
     channel: channel,
     type: type,
