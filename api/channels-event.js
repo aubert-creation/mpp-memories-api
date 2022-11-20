@@ -14,10 +14,10 @@ async function sendEvent({ channel, type, data }) {
   const event = {
     channel: channel,
     type: type,
-    data: JSON.parse(data),
+    data: data,
   };
 
-  pusher.trigger(event.channel, event.type, JSON.stringify(event.data), () => {
+  pusher.trigger(channel, type, event.data, () => {
     return 'ok';
   });
 }
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         body: "OK"
     }))
   }
-  
+
   const eventRes = await sendEvent(req.body);
   return res.status(200).json({ message: `Event sent successfuly`, eventRes });
 
