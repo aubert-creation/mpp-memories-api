@@ -1,4 +1,4 @@
-/*const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 const Pusher = require('pusher');
 
 dotenv.config();
@@ -21,11 +21,9 @@ async function sendEvent({ channel, type, data }) {
     return 'ok';
   });
 }
-*/
-export default async function handler(req, res) {
-  return res.status(200).json({ message: `Event sent successfuly` });
 
-  /*if (req.method === 'POST') {
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
     const eventRes = await sendEvent(req.body);
     if (eventRes) {
       return res.status(200).json({ message: `Event sent successfuly` });
