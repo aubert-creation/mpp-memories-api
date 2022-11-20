@@ -1,7 +1,7 @@
 const Pusher = require('pusher');
 
 
-const sendEvent = async ({ channel, type, data }) => {
+/*const sendEvent = async ({ channel, type, data }) => {
 
   const pusher = new Pusher({
     appId: process.env.APP_ID,
@@ -19,11 +19,11 @@ const sendEvent = async ({ channel, type, data }) => {
   pusher.trigger(event.channel, event.type, JSON.stringify(event.data), () => {
     return 'ok';
   });
-};
+};*/
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const eventRes = await sendEvent(req.body);
+    // const eventRes = await sendEvent(req.body);
     if (eventRes) {
       return res.status(200).json({ message: `Event sent successfuly` });
     }
