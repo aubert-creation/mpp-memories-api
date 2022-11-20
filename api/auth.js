@@ -1,4 +1,4 @@
-const Pusher = require('pusher');
+import Pusher from 'pusher';
 
 
 const pusher = new Pusher({
@@ -27,10 +27,12 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  const { socketId, channel } = req.body;
+  const body = req.json();
+  const socketId = body.socketId
+  const channel = body.channel
 
   const auth = pusher.authenticate(socketId, channel);
   res.send(auth);
 }
 
-module.exports = allowCors(handler);
+export default allowCors(handler);
