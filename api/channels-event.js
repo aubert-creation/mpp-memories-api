@@ -1,16 +1,14 @@
-const dotenv = require('dotenv');
-const Pusher = require('pusher');
+import Pusher from 'pusher';
 
-dotenv.config();
 
-const pusher = new Pusher({
-  appId: process.env.APP_ID,
-  key: process.env.KEY,
-  secret: process.env.SECRET,
-  cluster: process.env.CLUSTER,
-});
+const sendEvent = async ({ channel, type, data }) => {
+  const pusher = new Pusher({
+    appId: process.env.APP_ID,
+    key: process.env.KEY,
+    secret: process.env.SECRET,
+    cluster: process.env.CLUSTER,
+  });
 
-async function sendEvent({ channel, type, data }) {
   const event = {
     channel: channel,
     type: type,
@@ -20,7 +18,7 @@ async function sendEvent({ channel, type, data }) {
   pusher.trigger(event.channel, event.type, JSON.stringify(event.data), () => {
     return 'ok';
   });
-}
+};
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
