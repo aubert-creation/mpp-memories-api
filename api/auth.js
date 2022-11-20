@@ -27,6 +27,9 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
+  console.log('miaou');
+  console.log(req);
+  console.log(req.body);
   const requestText = await req.body.text();
   const form = new URLSearchParams(requestText);
 
