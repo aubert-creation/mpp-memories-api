@@ -23,7 +23,8 @@ async function sendEvent({ channel, type, data }) {
 }
 
 export default async function handler(req, res) {
-  return res.status(200).json({ message: `Event sent successfuly` });
+  const eventRes = await sendEvent(req.body);
+  return res.status(200).json({ message: `Event sent successfuly`, eventRes });
 
   /*if (req.method === 'POST') {
     const eventRes = await sendEvent(req.body);
