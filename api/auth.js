@@ -6,7 +6,7 @@ const pusher = new Pusher({
   key: process.env.KEY,
   secret: process.env.SECRET,
   cluster: process.env.CLUSTER,
-  useTLS: false
+  useTLS: true
 });
 
 const allowCors = fn => async (req, res) => {
@@ -27,8 +27,8 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  console.log('miaouuuu', req.body)
-  const requestText = await req.body.text();
+  console.log('miaouuuu', req, req.body)
+  const requestText = await req.text();
   const form = new URLSearchParams(requestText);
 
   const socketId = form.get('socketId')
