@@ -1,0 +1,9 @@
+{
+  "name": "mpp-memories-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "genius-lyrics": "^4.4.0"
+  }
+}
