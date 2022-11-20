@@ -1,7 +1,7 @@
-/*const dotenv = require('dotenv');
+/*const dotenv = require('dotenv');*/
 const Pusher = require('pusher');
 
-dotenv.config();
+//dotenv.config();
 
 const pusher = new Pusher({
   appId: process.env.APP_ID,
@@ -9,7 +9,7 @@ const pusher = new Pusher({
   secret: process.env.SECRET,
   cluster: process.env.CLUSTER,
 });
-
+/*
 async function sendEvent({ channel, type, data }) {
   const event = {
     channel: channel,
