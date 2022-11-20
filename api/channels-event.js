@@ -9,7 +9,7 @@ const pusher = new Pusher({
   secret: process.env.SECRET,
   cluster: process.env.CLUSTER,
 });
-/*
+
 async function sendEvent({ channel, type, data }) {
   const event = {
     channel: channel,
@@ -21,7 +21,7 @@ async function sendEvent({ channel, type, data }) {
     return 'ok';
   });
 }
-*/
+
 export default async function handler(req, res) {
   return res.status(200).json({ message: `Event sent successfuly` });
 
