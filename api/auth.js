@@ -27,10 +27,8 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  console.log('miaou');
-  console.log(req);
-  console.log(req.body);
-  const requestText = await req.body.text();
+  console.error('miaou');
+  const requestText = await req.body;
   const form = new URLSearchParams(requestText);
 
   const socketId = form.get('socketId')
