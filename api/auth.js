@@ -27,14 +27,12 @@ const allowCors = fn => async (req, res) => {
 }
 
 const handler = async (req, res) => {
-  console.error('miaou');
-  console.error(req);
-  console.error(req.body);
   const requestText = await req.body;
   const form = new URLSearchParams(requestText);
   console.error(form);
-  const socketId = form.get('socketId')
-  const channel = form.get('channel')
+  console.error(form.get('socket_id'));
+  const socketId = form.get('socket_id')
+  const channel = form.get('channel_name')
 
   const auth = pusher.authenticate(socketId, channel);
   res.send(auth);
